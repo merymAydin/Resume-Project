@@ -27,7 +27,7 @@ namespace ResumeProject.DataAccess.Contexts
         
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //IEntityTypeConfiguration<T> interface ini 
+            //IEntityTypeConfiguration<T> interface ini implement eden classları çağrıyoruz
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
             base.OnModelCreating(modelBuilder);
         }
