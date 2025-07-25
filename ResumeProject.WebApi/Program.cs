@@ -1,8 +1,20 @@
+using System.Reflection;
+using Microsoft.EntityFrameworkCore;
+using ResumeProject.DataAccess.Contexts;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddDbContext<ResumeProjectDbContext>(options =>
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString("MeryemHome"), options =>
+    {
+        options.MigrationsAssembly(Assembly.GetAssembly(typeof(ResumeProjectDbContext))!.GetName().Name); 
+    });
+});
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
