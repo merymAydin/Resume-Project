@@ -2,7 +2,7 @@
 
 namespace ResumeProject.Entity.DTOs.SocialAccounts;
 
-public sealed class SocialAccountsCreateRequestDto(
+public sealed record SocialAccountsCreateRequestDto(
     string Name,
     string WebUrl,
     string UserName,

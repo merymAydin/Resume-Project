@@ -7,7 +7,7 @@ using Core.Entities;
 
 namespace ResumeProject.Entity.DTOs.Certificate
 {
-    public sealed class CertificateResponseDto(
+    public sealed record CertificateResponseDto(
         Guid Id,
         string Title,
         string Degree,

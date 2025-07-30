@@ -2,7 +2,7 @@
 
 namespace ResumeProject.Entity.DTOs.Skill;
 
-public sealed class SkillUpdateRequestDto(
+public sealed record SkillUpdateRequestDto(
     Guid Id,
     string Title,
     string Icon,

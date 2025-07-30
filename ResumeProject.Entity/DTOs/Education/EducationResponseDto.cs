@@ -7,7 +7,7 @@ using Core.Entities;
 
 namespace ResumeProject.Entity.DTOs.Education
 {
-    public sealed class EducationResponseDto(
+    public sealed record EducationResponseDto(
         Guid Id,
         string School,
         string Section,

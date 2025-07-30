@@ -7,7 +7,7 @@ using Core.Entities;
 
 namespace ResumeProject.Entity.DTOs.Language
 {
-    public sealed class LanguageResponseDto(
+    public sealed record LanguageResponseDto(
         Guid Id,
         string Name,
         byte Level

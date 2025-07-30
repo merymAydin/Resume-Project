@@ -2,7 +2,7 @@
 
 namespace ResumeProject.Entity.DTOs.Interest;
 
-public sealed class InterestUpdateRequestDto(
+public sealed record InterestUpdateRequestDto(
     Guid Id,
     string Description,
     byte Order,

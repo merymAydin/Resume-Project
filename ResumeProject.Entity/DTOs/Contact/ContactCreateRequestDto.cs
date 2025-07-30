@@ -2,7 +2,7 @@
 
 namespace ResumeProject.Entity.DTOs.Contact;
 
-public sealed class ContactCreateRequestDto(
+public sealed record ContactCreateRequestDto(
     string Address,
     string City,
     string Town,

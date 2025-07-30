@@ -2,7 +2,7 @@
 
 namespace ResumeProject.Entity.DTOs.Language;
 
-public sealed class LanguageDetailResponseDto(
+public sealed record LanguageDetailResponseDto(
     Guid Id,
     string Name,
     byte Level,

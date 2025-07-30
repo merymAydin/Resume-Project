@@ -2,7 +2,7 @@
 
 namespace ResumeProject.Entity.DTOs.PersonalInfo;
 
-public sealed class PersonalInfoCreateRequestDto(
+public sealed record PersonalInfoCreateRequestDto(
     string FirstName,
     string LastName,
     string ImageUrl,

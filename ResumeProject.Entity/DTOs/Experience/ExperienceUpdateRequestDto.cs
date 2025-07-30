@@ -2,7 +2,7 @@
 
 namespace ResumeProject.Entity.DTOs.Experience;
 
-public sealed class ExperienceUpdateRequestDto(
+public sealed record ExperienceUpdateRequestDto(
     Guid Id,
     string Title,
     string Company,

@@ -7,7 +7,7 @@ using Core.Entities;
 
 namespace ResumeProject.Entity.DTOs.Contact
 {
-    public sealed class ContactResponseDto(
+    public sealed record ContactResponseDto(
         Guid Id,
         string Address,
         string City,

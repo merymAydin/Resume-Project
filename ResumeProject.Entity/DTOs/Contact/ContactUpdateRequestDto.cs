@@ -2,7 +2,7 @@
 
 namespace ResumeProject.Entity.DTOs.Contact;
 
-public sealed class ContactUpdateRequestDto(
+public sealed record ContactUpdateRequestDto(
     Guid Id,
     string Address,
     string City,

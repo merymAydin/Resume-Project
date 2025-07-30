@@ -7,7 +7,7 @@ using Core.Entities;
 
 namespace ResumeProject.Entity.DTOs.SocialAccounts
 {
-    public sealed class SocialAccountsResponseDto(
+    public sealed record SocialAccountsResponseDto(
         Guid Id,
         string Name,
         string WebUrl,

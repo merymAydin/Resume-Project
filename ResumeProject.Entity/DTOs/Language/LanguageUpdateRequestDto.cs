@@ -2,7 +2,7 @@
 
 namespace ResumeProject.Entity.DTOs.Language;
 
-public sealed class LanguageUpdateRequestDto(
+public sealed record LanguageUpdateRequestDto(
     Guid Id,
     string Name,
     byte Level,

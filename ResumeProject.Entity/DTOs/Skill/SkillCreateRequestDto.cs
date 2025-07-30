@@ -2,7 +2,7 @@
 
 namespace ResumeProject.Entity.DTOs.Skill;
 
-public sealed class SkillCreateRequestDto(
+public sealed record SkillCreateRequestDto(
     string Title,
     string Icon,
     bool IsProgramLanguageAndTool

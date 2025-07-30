@@ -2,7 +2,7 @@
 
 namespace ResumeProject.Entity.DTOs.Contact;
 
-public sealed class ContactDetailResponseDto(
+public sealed record ContactDetailResponseDto(
     Guid Id,
     string Address,
     string City,

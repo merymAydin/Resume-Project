@@ -7,7 +7,7 @@ using Core.Entities;
 
 namespace ResumeProject.Entity.DTOs.PersonalInfo
 {
-    public sealed class PersonalInfoResponseDto(
+    public sealed record PersonalInfoResponseDto(
         Guid Id,
         string FirstName,
         string LastName,

@@ -2,7 +2,7 @@
 
 namespace ResumeProject.Entity.DTOs.About;
 
-public sealed class AboutDetailResponseDto(
+public sealed record AboutDetailResponseDto(
     Guid Id,
     string Description,
     byte Order,

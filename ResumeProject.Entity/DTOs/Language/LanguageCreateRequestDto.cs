@@ -2,7 +2,7 @@
 
 namespace ResumeProject.Entity.DTOs.Language;
 
-public sealed class LanguageCreateRequestDto(
+public sealed record LanguageCreateRequestDto(
     string Name,
     byte Level
 ) : ICreateDto;

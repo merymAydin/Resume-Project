@@ -2,7 +2,7 @@
 
 namespace ResumeProject.Entity.DTOs.Education;
 
-public sealed class EducationCreateRequestDto(
+public sealed record EducationCreateRequestDto(
     string School,
     string Section,
     string Department,

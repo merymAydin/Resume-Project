@@ -2,7 +2,7 @@
 
 namespace ResumeProject.Entity.DTOs.Certificate;
 
-public sealed class CertificateCreateRequestDto(
+public sealed record CertificateCreateRequestDto(
     string Title,
     string Degree,
     string Organization,

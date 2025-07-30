@@ -2,7 +2,7 @@
 
 namespace ResumeProject.Entity.DTOs.Interest;
 
-public sealed class InterestCreateRequestDto(
+public sealed record InterestCreateRequestDto(
     string Description,
     byte Order
 ) : ICreateDto;

@@ -2,7 +2,7 @@
 
 namespace ResumeProject.Entity.DTOs.PersonalInfo;
 
-public sealed class PersonalInfoUpdateRequestDto(
+public sealed record PersonalInfoUpdateRequestDto(
     Guid Id,
     string FirstName,
     string LastName,

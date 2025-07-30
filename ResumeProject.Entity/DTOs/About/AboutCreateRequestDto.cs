@@ -2,7 +2,7 @@
 
 namespace ResumeProject.Entity.DTOs.About;
 
-public sealed class AboutCreateRequestDto(
+public sealed record AboutCreateRequestDto(
     string Description,
     byte Order
 ) : ICreateDto;

@@ -2,7 +2,7 @@
 
 namespace ResumeProject.Entity.DTOs.Certificate;
 
-public sealed class CertificateUpdateRequestDto(
+public sealed record CertificateUpdateRequestDto(
     Guid Id,
     string Title,
     string Degree,

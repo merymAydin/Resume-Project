@@ -2,7 +2,7 @@
 
 namespace ResumeProject.Entity.DTOs.Education;
 
-public sealed class EducationUpdateRequestDto(
+public sealed record EducationUpdateRequestDto(
     Guid id,
     string School,
     string Section,

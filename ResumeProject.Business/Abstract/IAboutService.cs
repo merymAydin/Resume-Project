@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using Core.Business;
 using ResumeProject.Entity.Concrete;
+using ResumeProject.Entity.DTOs.About;
 
 namespace ResumeProject.Business.Abstract
 {
-    public interface IAboutService:IGenericService<About>
+    public interface IAboutService:IGenericService<About,AboutResponseDto,AboutDetailResponseDto,AboutCreateRequestDto,AboutUpdateRequestDto>
     {
     }
 }

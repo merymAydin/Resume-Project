@@ -7,7 +7,7 @@ using Core.Entities;
 
 namespace ResumeProject.Entity.DTOs.About
 {
-    public sealed class AboutResponseDto(
+    public sealed record AboutResponseDto(
         Guid Id,
         string Description,
         byte Order

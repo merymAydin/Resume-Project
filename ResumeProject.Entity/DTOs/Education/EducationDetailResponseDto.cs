@@ -2,7 +2,7 @@
 
 namespace ResumeProject.Entity.DTOs.Education;
 
-public sealed class EducationDetailResponseDto (
+public sealed record EducationDetailResponseDto (
     Guid id,
     string School,
     string Section,

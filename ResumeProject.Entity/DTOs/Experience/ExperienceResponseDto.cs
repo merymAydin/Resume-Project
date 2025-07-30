@@ -7,7 +7,7 @@ using Core.Entities;
 
 namespace ResumeProject.Entity.DTOs.Experience
 {
-    public sealed class ExperienceResponseDto(
+    public sealed record ExperienceResponseDto(
         Guid Id,
         string Title,
         string Company,

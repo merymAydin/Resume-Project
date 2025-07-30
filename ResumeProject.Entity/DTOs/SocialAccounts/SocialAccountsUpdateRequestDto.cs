@@ -2,7 +2,7 @@
 
 namespace ResumeProject.Entity.DTOs.SocialAccounts;
 
-public sealed class SocialAccountsUpdateRequestDto(
+public sealed record SocialAccountsUpdateRequestDto(
     Guid Id,
     string Name,
     string WebUrl,
