@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using Core.Business;
 using Core.Utilities.Results;
 using ResumeProject.Entity.Concrete;
+using ResumeProject.Entity.DTOs.SocialAccounts;
 
 namespace ResumeProject.Business.Abstract
 {
-    public interface ISocialAccountService : IGenericService<SocialAccount>
+    public interface ISocialAccountService : IGenericService<SocialAccount,SocialAccountsResponseDto,SocialAccountsCreateRequestDto,SocialAccountsUpdateRequestDto,SocialAccountsDetailResponseDto>
     {
-        Task<IDataResult<SocialAccount>> GetSocialAccountByNameAsync();
-        Task<IDataResult<IEnumerable<SocialAccount>>> GetSocialAccountsByUserNameAsync();
+        Task<IDataResult<SocialAccountsResponseDto>> GetSocialAccountByNameAsync();
+        Task<IDataResult<IEnumerable<SocialAccountsResponseDto>>> GetSocialAccountsByUserNameAsync();
     }
 }

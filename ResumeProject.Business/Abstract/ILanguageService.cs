@@ -7,11 +7,12 @@ using Core.Business;
 using Core.DataAccess;
 using Core.Utilities.Results;
 using ResumeProject.Entity.Concrete;
+using ResumeProject.Entity.DTOs.Language;
 
 namespace ResumeProject.Business.Abstract
 {
-    public interface ILanguageService: IGenericService<Language>
+    public interface ILanguageService: IGenericService<Language,LanguageResponseDto,LanguageCreateRequestDto,LanguageUpdateRequestDto,LanguageDetailResponseDto>
     {
-        Task<IDataResult<IEnumerable<Language>>> GetLanguagesGreaterLevelAsync(byte level);
+        Task<IDataResult<IEnumerable<LanguageResponseDto>>> GetLanguagesGreaterLevelAsync(byte level);
     }
 }

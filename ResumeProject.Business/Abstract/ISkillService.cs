@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using Core.Business;
 using Core.Utilities.Results;
 using ResumeProject.Entity.Concrete;
+using ResumeProject.Entity.DTOs.Skill;
 
 namespace ResumeProject.Business.Abstract
 {
-    public interface ISkillService: IGenericService<Skill>
+    public interface ISkillService: IGenericService<Skill,SkillResponseDto,SkillCreateRequestDto,SkillUpdateRequestDto,SkillDetailResponseDto >
     {
-        Task<IDataResult<IEnumerable<Skill>>> GetSkillsProgramLanguagesAsync(bool program);
-        Task<IDataResult<IEnumerable<Skill>>> GetSkillsToolsAsync(bool tools);
+        Task<IDataResult<IEnumerable<SkillResponseDto>>> GetSkillsProgramLanguagesAsync(bool program);
+        Task<IDataResult<IEnumerable<SkillResponseDto>>> GetSkillsToolsAsync(bool tools);
     }
 }

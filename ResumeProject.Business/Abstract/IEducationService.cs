@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 using Core.Business;
 using Core.Utilities.Results;
 using ResumeProject.Entity.Concrete;
+using ResumeProject.Entity.DTOs.Education;
 
 namespace ResumeProject.Business.Abstract
 {
-    public interface IEducationService : IGenericService<Education>
+    public interface IEducationService : IGenericService<Education, EducationResponseDto, EducationCreateRequestDto, EducationUpdateRequestDto, EducationDetailResponseDto>
     {
-        Task<IDataResult<Education>> GetEducationAsync(string grade);
+        Task<IDataResult<EducationResponseDto>> GetEducationAsync(string grade);
         Task<IResult> AnyContinueAsync();
     }
 }

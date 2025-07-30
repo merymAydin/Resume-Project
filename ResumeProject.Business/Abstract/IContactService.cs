@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 using Core.Business;
 using Core.Utilities.Results;
 using ResumeProject.Entity.Concrete;
+using ResumeProject.Entity.DTOs.Contact;
 
 namespace ResumeProject.Business.Abstract
 {
-    public interface IContactService : IGenericService<Contact>
+    public interface IContactService : IGenericService<Contact,ContactResponseDto,ContactCreateRequestDto,ContactUpdateRequestDto,ContactDetailResponseDto>
     {
-        Task<IDataResult<IEnumerable<Contact>>> GetContactsListByCityAsync();
+        Task<IDataResult<IEnumerable<ContactResponseDto>>> GetContactsListByCityAsync();
     }
 }
