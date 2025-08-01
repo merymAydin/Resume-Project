@@ -12,6 +12,6 @@ namespace ResumeProject.Business.Abstract
 {
     public interface ICertificateService:IGenericService<Certificate,CertificateResponseDto,CertificateCreateRequestDto,CertificateUpdateRequestDto,CertificateDetailResponseDto>
     {
-        Task<IDataResult<IEnumerable<CertificateResponseDto>>> GetCertificatesByOrganizationAsync();
+        Task<IDataResult<IEnumerable<CertificateResponseDto>>> GetCertificatesByOrganizationAsync(string organization);
     }
 }
