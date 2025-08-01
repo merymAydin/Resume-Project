@@ -12,6 +12,6 @@ namespace ResumeProject.Business.Abstract
 {
     public interface IContactService : IGenericService<Contact,ContactResponseDto,ContactCreateRequestDto,ContactUpdateRequestDto,ContactDetailResponseDto>
     {
-        Task<IDataResult<IEnumerable<ContactResponseDto>>> GetContactsListByCityAsync();
+        Task<IDataResult<IEnumerable<ContactResponseDto>>> GetContactsListByCityAsync(string city);
     }
 }
