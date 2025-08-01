@@ -3,36 +3,44 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
+using Core.UnitOfWorks;
 using Core.Utilities.Results;
 using ResumeProject.Business.Abstract;
 using ResumeProject.DataAccess.Abstract;
 using ResumeProject.Entity.Concrete;
+using ResumeProject.Entity.DTOs.Language;
 
 namespace ResumeProject.Business.Concrete
 {
     public sealed class LanguageManager : ILanguageService
     {
         private readonly ILanguageRepository _languageRepository;
-        public LanguageManager(ILanguageRepository languageRepository)
+        private readonly IMapper _mapper;
+        private readonly IUnitOfWork _unitOfWork;
+        public LanguageManager(ILanguageRepository languageRepository, IMapper mapper, IUnitOfWork unitOfWork)
         {
             _languageRepository = languageRepository;
+            _mapper = mapper;
+            _unitOfWork = unitOfWork;
         }
-        public async Task<IDataResult<Language>> AddAsync(Language entity)
+
+        public async Task<IDataResult<LanguageResponseDto>> AddAsync(LanguageCreateRequestDto dto)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IDataResult<IEnumerable<Language>>> GetAllAsync()
+        public async Task<IDataResult<IEnumerable<LanguageResponseDto>>> GetAllAsync()
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IDataResult<Language>> GetByIdAsync(Guid id)
+        public async Task<IDataResult<LanguageResponseDto>> GetByIdAsync(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public async Task<IDataResult<IEnumerable<Language>>> GetLanguagesGreaterLevelAsync(byte level)
+        public async Task<IDataResult<IEnumerable<LanguageResponseDto>>> GetLanguagesGreaterLevelAsync(byte level)
         {
             throw new NotImplementedException();
         }
@@ -42,7 +50,7 @@ namespace ResumeProject.Business.Concrete
             throw new NotImplementedException();
         }
 
-        public async Task<IResult> UpdateAsync(Language entity)
+        public async Task<IResult> UpdateAsync(LanguageUpdateRequestDto dto)
         {
             throw new NotImplementedException();
         }

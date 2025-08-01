@@ -9,7 +9,7 @@ using Core.Utilities.Results;
 
 namespace Core.Business;
 public interface IGenericService<TEntity, TResponse, in TCreate, in TUpdate, TDetail>
-    where TEntity : BaseEntity, new()
+    where TEntity :class, IEntity, new()
     where TResponse : class, IResponseDto
     where TCreate : class, ICreateDto
     where TUpdate : class, IUpdateDto
