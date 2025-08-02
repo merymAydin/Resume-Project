@@ -12,7 +12,7 @@ namespace ResumeProject.Business.Abstract
 {
     public interface ISocialAccountService : IGenericService<SocialAccount,SocialAccountsResponseDto,SocialAccountsCreateRequestDto,SocialAccountsUpdateRequestDto,SocialAccountsDetailResponseDto>
     {
-        Task<IDataResult<SocialAccountsResponseDto>> GetSocialAccountByNameAsync();
-        Task<IDataResult<IEnumerable<SocialAccountsResponseDto>>> GetSocialAccountsByUserNameAsync();
+        Task<IDataResult<SocialAccountsResponseDto>> GetSocialAccountByNameAsync(string platform);
+        Task<IDataResult<IEnumerable<SocialAccountsResponseDto>>> GetSocialAccountsByUserNameAsync(string username );
     }
 }

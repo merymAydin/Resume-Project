@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Core.UnitOfWorks;
 using Core.Utilities.Results;
+using Microsoft.EntityFrameworkCore;
 using ResumeProject.Business.Abstract;
+using ResumeProject.Business.Constants;
 using ResumeProject.DataAccess.Abstract;
 using ResumeProject.Entity.Concrete;
 using ResumeProject.Entity.DTOs.SocialAccounts;
@@ -27,37 +29,133 @@ namespace ResumeProject.Business.Concrete
 
         public async Task<IDataResult<SocialAccountsResponseDto>> AddAsync(SocialAccountsCreateRequestDto dto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var social = _mapper.Map<SocialAccount>(dto);
+                await _socialAccountRepository.AddAsync(social);
+                await _unitOfWork.CommitAsync();
+                var response = _mapper.Map<SocialAccountsResponseDto>(social);
+                return new SuccessDataResult<SocialAccountsResponseDto>(response, ResultMessages.SuccessCreated);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<SocialAccountsResponseDto>(e.Message);
+            }
         }
 
         public async Task<IDataResult<IEnumerable<SocialAccountsResponseDto>>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var socials = await _socialAccountRepository.GetAll(s => !s.isDeleted).ToListAsync();
+                if (socials == null)
+                {
+                    return new ErrorDataResult<IEnumerable<SocialAccountsResponseDto>>(ResultMessages.ErrorListed);
+                }
+
+                var dtos = _mapper.Map<IEnumerable<SocialAccountsResponseDto>>(socials);
+                return new SuccessDataResult<IEnumerable<SocialAccountsResponseDto>>(dtos,ResultMessages.SuccessListed);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<IEnumerable<SocialAccountsResponseDto>>(e.Message);
+            }
         }
 
         public async Task<IDataResult<SocialAccountsResponseDto>> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var social = await _socialAccountRepository.GetAsync(s => s.Id == id);
+                if (social == null)
+                {
+                    return new ErrorDataResult<SocialAccountsResponseDto>(ResultMessages.ErrorListed);
+                }
+
+                var response = _mapper.Map<SocialAccountsResponseDto>(social);
+                return new SuccessDataResult<SocialAccountsResponseDto>(response, ResultMessages.SuccessListed);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<SocialAccountsResponseDto>(e.Message);
+            }
         }
 
-        public async Task<IDataResult<SocialAccountsResponseDto>> GetSocialAccountByNameAsync()
+        public async Task<IDataResult<SocialAccountsResponseDto>> GetSocialAccountByNameAsync(string platform)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var social = await _socialAccountRepository.GetAsync(s => s.Name == platform);
+                if (social == null)
+                {
+                    return new ErrorDataResult<SocialAccountsResponseDto>(ResultMessages.ErrorGet);
+                }
+
+                var response = _mapper.Map<SocialAccountsResponseDto>(social);
+                return new SuccessDataResult<SocialAccountsResponseDto>(response, ResultMessages.SuccessGet);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<SocialAccountsResponseDto>(e.Message);
+            }
         }
 
-        public async Task<IDataResult<IEnumerable<SocialAccountsResponseDto>>> GetSocialAccountsByUserNameAsync()
+        public async Task<IDataResult<IEnumerable<SocialAccountsResponseDto>>> GetSocialAccountsByUserNameAsync(string username)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var socials = await _socialAccountRepository.GetAll(s => s.UserName == username).ToListAsync();
+                if (socials == null)
+                {
+                    return new ErrorDataResult<IEnumerable<SocialAccountsResponseDto>>(ResultMessages.ErrorListed);
+                }
+
+                var response = _mapper.Map<IEnumerable<SocialAccountsResponseDto>>(socials);
+                return new SuccessDataResult<IEnumerable<SocialAccountsResponseDto>>(response,
+                    ResultMessages.SuccessListed);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<IEnumerable<SocialAccountsResponseDto>>(e.Message);
+            }
         }
 
         public async Task<IResult> RemoveAsync(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var social = await _socialAccountRepository.GetAsync(s=>s.Id == id);
+                if (social == null)
+                {
+                    return new ErrorResult(ResultMessages.ErrorGet);
+                }
+                social.UpdateAt=DateTime.Now;
+                social.isDeleted = true;
+                social.isActive = false;
+                _socialAccountRepository.Update(social);
+                await _unitOfWork.CommitAsync();
+                return new SuccessResult(ResultMessages.SuccessDeleted);
+            }
+            catch (Exception e)
+            {
+                return new ErrorResult(e.Message);
+            }
         }
 
         public async Task<IResult> UpdateAsync(SocialAccountsUpdateRequestDto dto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var social = _mapper.Map<SocialAccount>(dto);
+                social.UpdateAt= DateTime.Now;
+                _socialAccountRepository.Update(social);
+                await _unitOfWork.CommitAsync();
+                return new SuccessResult(ResultMessages.SuccessUpdated);
+            }
+            catch (Exception e)
+            {
+                return new SuccessResult(e.Message);
+            }
         }
     }
 }

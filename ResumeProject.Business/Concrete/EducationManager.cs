@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 using AutoMapper;
 using Core.UnitOfWorks;
 using Core.Utilities.Results;
+using Microsoft.EntityFrameworkCore;
 using ResumeProject.Business.Abstract;
+using ResumeProject.Business.Constants;
 using ResumeProject.DataAccess.Abstract;
 using ResumeProject.Entity.Concrete;
 using ResumeProject.Entity.DTOs.Education;
@@ -27,37 +29,130 @@ namespace ResumeProject.Business.Concrete
 
         public async Task<IDataResult<EducationResponseDto>> AddAsync(EducationCreateRequestDto dto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var education = _mapper.Map<Education>(dto);
+                await _educationRepository.AddAsync(education);
+                await _unitOfWork.CommitAsync();
+                var response = _mapper.Map<EducationResponseDto>(education);
+                return new SuccessDataResult<EducationResponseDto>(response, ResultMessages.SuccessCreated);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<EducationResponseDto>(e.Message);
+            }
         }
 
         public async Task<IResult> AnyContinueAsync()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var education = await _educationRepository.AnyAsync(e => e.EndDate == null);
+                if (!education)
+                {
+                    return new SuccessResult(ResultMessages.ErrorGet);
+                }
+                return new SuccessResult(ResultMessages.SuccessGet);
+            }
+            catch (Exception e)
+            {
+                return new ErrorResult(e.Message);
+            }
         }
 
         public async Task<IDataResult<IEnumerable<EducationResponseDto>>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var educations = await _educationRepository.GetAll(e => !e.isDeleted).ToListAsync();
+                if (educations == null)
+                {
+                    return new ErrorDataResult<IEnumerable<EducationResponseDto>>(ResultMessages.ErrorListed);
+                }
+
+                var dtos = _mapper.Map<IEnumerable<EducationResponseDto>>(educations);
+                return new SuccessDataResult<IEnumerable<EducationResponseDto>>(dtos,ResultMessages.SuccessListed);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<IEnumerable<EducationResponseDto>>(e.Message);
+            }
         }
 
         public async Task<IDataResult<EducationResponseDto>> GetByIdAsync(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var education = await _educationRepository.GetAsync(e => e.Id == id);
+                if (education is null)
+                {
+                    return new ErrorDataResult<EducationResponseDto>(ResultMessages.ErrorGet);
+                }
+
+                var response = _mapper.Map<EducationResponseDto>(education);
+                return new SuccessDataResult<EducationResponseDto>(response, ResultMessages.SuccessGet);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<EducationResponseDto>(e.Message);
+            }
         }
 
         public async Task<IDataResult<EducationResponseDto>> GetEducationAsync(string grade)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var education = await _educationRepository.GetAsync(e => e.Grade == grade);
+                if (education == null)
+                {
+                    return new ErrorDataResult<EducationResponseDto>(ResultMessages.ErrorGet);
+                }
+
+                var dto = _mapper.Map<EducationResponseDto>(education);
+                return new SuccessDataResult<EducationResponseDto>(dto, ResultMessages.SuccessGet);
+            }
+            catch (Exception e)
+            {
+                return new ErrorDataResult<EducationResponseDto>(e.Message);
+            }
         }
 
         public async Task<IResult> RemoveAsync(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var education = await _educationRepository.GetAsync(e => e.Id == id);
+                if (education is null)
+                {
+                    return new ErrorResult(ResultMessages.ErrorGet);
+                }
+                education.UpdateAt=DateTime.Now;
+                education.isDeleted = true;
+                education.isActive = false;
+                _educationRepository.Update(education);
+                await _unitOfWork.CommitAsync();
+                return new SuccessResult(ResultMessages.SuccessDeleted);
+            }
+            catch (Exception e)
+            {
+                return new ErrorResult(e.Message);
+            }
         }
 
         public async Task<IResult> UpdateAsync(EducationUpdateRequestDto dto)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var education = _mapper.Map<Education>(dto);
+                education.UpdateAt=DateTime.Now;
+                _educationRepository.Update(education);
+                await _unitOfWork.CommitAsync();
+                return new SuccessResult(ResultMessages.SuccessUpdated);
+            }
+            catch (Exception e)
+            {
+                return new ErrorResult(e.Message);
+            }
         }
     }
 }
