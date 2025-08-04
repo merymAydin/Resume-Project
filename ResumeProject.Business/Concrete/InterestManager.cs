@@ -47,7 +47,7 @@ namespace ResumeProject.Business.Concrete
         {
             try
             {
-                var interests = await _interestRepository.GetAll(i => !i.isDeleted).ToListAsync();
+                var interests = await _interestRepository.GetAll(i => !i.isDeleted).OrderByDescending(i=>i.Order).ToListAsync();
                 if (interests == null)
                 {
                     return new ErrorDataResult<IEnumerable<InterestResponseDto>>(ResultMessages.ErrorListed);

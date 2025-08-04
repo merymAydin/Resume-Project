@@ -50,7 +50,7 @@ namespace ResumeProject.Business.Concrete
         {
             try
             {
-                var abouts = await _aboutRepository.GetAll(a => !a.isDeleted).ToListAsync();
+                var abouts = await _aboutRepository.GetAll(a => !a.isDeleted).OrderBy(a=>a.Order).ToListAsync();
                 if (abouts is null)
                 {
                     return new ErrorDataResult<IEnumerable<AboutResponseDto>>(ResultMessages.ErrorAboutListed);

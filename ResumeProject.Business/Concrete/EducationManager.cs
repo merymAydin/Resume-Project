@@ -64,7 +64,7 @@ namespace ResumeProject.Business.Concrete
         {
             try
             {
-                var educations = await _educationRepository.GetAll(e => !e.isDeleted).ToListAsync();
+                var educations = await _educationRepository.GetAll(e => !e.isDeleted).OrderByDescending(e=>e.StartDate).ToListAsync();
                 if (educations == null)
                 {
                     return new ErrorDataResult<IEnumerable<EducationResponseDto>>(ResultMessages.ErrorListed);

@@ -47,7 +47,7 @@ namespace ResumeProject.Business.Concrete
         {
             try
             {
-                var experiences = await _experienceRepository.GetAll(e=>!e.isDeleted).ToListAsync();
+                var experiences = await _experienceRepository.GetAll(e=>!e.isDeleted).OrderByDescending(e=>e.StartDate).ToListAsync();
                 if (experiences == null)
                 {
                     return new ErrorDataResult<IEnumerable<ExperienceResponseDto>>(ResultMessages.ErrorListed);
@@ -84,7 +84,7 @@ namespace ResumeProject.Business.Concrete
         {
             try
             {
-                var experiences = await _experienceRepository.GetAll(e=>!e.isDeleted && e.Company==company).ToListAsync();
+                var experiences = await _experienceRepository.GetAll(e=>!e.isDeleted && e.Company==company).OrderByDescending(e=>e.StartDate).ToListAsync();
                 if (experiences == null)
                 {
                     return new ErrorDataResult<IEnumerable<ExperienceResponseDto>>(ResultMessages.ErrorListed);
