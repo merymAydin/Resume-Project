@@ -8,6 +8,7 @@ using Core.Business;
 using Core.UnitOfWorks;
 using Core.Utilities.Results;
 using Microsoft.EntityFrameworkCore;
+using ResumeProject.Business.Abstract;
 using ResumeProject.Business.Constants;
 using ResumeProject.DataAccess.Abstract;
 using ResumeProject.Entity.Concrete;

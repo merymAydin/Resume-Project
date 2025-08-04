@@ -10,7 +10,7 @@ using ResumeProject.Business.Concrete;
 using ResumeProject.DataAccess.Abstract;
 using ResumeProject.DataAccess.Concrete.EntityFramework;
 using ResumeProject.DataAccess.UnitOfWork;
-using IAboutService = ResumeProject.Business.Abstract.IAboutService;
+
 
 
 namespace ResumeProject.Business.DependencyResolvers.Autofac
