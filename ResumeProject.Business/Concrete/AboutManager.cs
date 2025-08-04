@@ -16,7 +16,7 @@ using ResumeProject.Entity.DTOs.About;
 
 namespace ResumeProject.Business.Concrete
 {
-    public sealed class AboutManager : IAboutService
+    public class AboutManager : IAboutService
     {
         private readonly IAboutRepository _aboutRepository;
         private readonly IMapper _mapper;

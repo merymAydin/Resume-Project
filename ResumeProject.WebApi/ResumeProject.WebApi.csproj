@@ -19,8 +19,4 @@
     <ProjectReference Include="..\ResumeProject.Business\ResumeProject.Business.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>

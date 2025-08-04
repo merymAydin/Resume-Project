@@ -10,7 +10,8 @@ using ResumeProject.Business.Concrete;
 using ResumeProject.DataAccess.Abstract;
 using ResumeProject.DataAccess.Concrete.EntityFramework;
 using ResumeProject.DataAccess.UnitOfWork;
-using IAboutService = ResumeProject.DataAccess.Abstract.IAboutService;
+using IAboutService = ResumeProject.Business.Abstract.IAboutService;
+
 
 namespace ResumeProject.Business.DependencyResolvers.Autofac
 {
@@ -24,9 +25,9 @@ namespace ResumeProject.Business.DependencyResolvers.Autofac
             builder.RegisterType<CertificateManager>().As<ICertificateService>();
             builder.RegisterType<EfContactRepository>().As<IContactRepository>();
             builder.RegisterType<ContactManager>().As<IContactService>();
-            builder.RegisterType<EfEducationRepository>().As<IExperienceRepository>();
+            builder.RegisterType<EfEducationRepository>().As<IEducationRepository>();
             builder.RegisterType<EducationManager>().As<IEducationService>();
-            builder.RegisterType<EfExperienceRepository>().As<IEducationRepository>();
+            builder.RegisterType<EfExperienceRepository>().As<IExperienceRepository>();
             builder.RegisterType<ExperienceManager>().As<IExperienceService>();
             builder.RegisterType<EfInterestRepository>().As<IInterestRepository>();
             builder.RegisterType<InterestManager>().As<IInterestService>();
