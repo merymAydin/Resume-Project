@@ -7,6 +7,4 @@ namespace ResumeProject.Entity.Concrete
         public string Description { get; set; }
         public byte Order { get; set; }
     }
-
-
 }
