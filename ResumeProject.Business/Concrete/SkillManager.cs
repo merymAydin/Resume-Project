@@ -100,7 +100,7 @@ namespace ResumeProject.Business.Concrete
             }
         }
 
-        public async Task<IDataResult<IEnumerable<SkillResponseDto>>> GetSkillsToolsAsync(bool tools)
+        public async Task<IDataResult<IEnumerable<SkillResponseDto>>> GetWorkflowsAsync()
         {
             try
             {

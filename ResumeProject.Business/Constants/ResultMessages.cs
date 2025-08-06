@@ -32,5 +32,9 @@ namespace ResumeProject.Business.Constants
         public static string ErrorDeleted = "An error occurred while deleting the information";
         public static string ErrorListed = "An error occurred while listing the information";
         public static string ErrorGet = "An error occurred while retrieving the information";
+
+
+        public static string IsTrue = "Yes";
+        public static string IsFalse = "No";
     }
 }

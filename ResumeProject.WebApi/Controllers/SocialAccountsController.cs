@@ -1,31 +1,30 @@
-﻿using Core.Utilities.Results;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using ResumeProject.Business.Abstract;
-using ResumeProject.Entity.DTOs.Skill;
+using ResumeProject.Entity.DTOs.SocialAccounts;
 
 namespace ResumeProject.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SkillsController : ControllerBase
+    public class SocialAccountsController : ControllerBase
     {
-        private readonly ISkillService _skillService;
+        private readonly ISocialAccountService _socialAccountService;
 
-        public SkillsController(ISkillService skillService)
+        public SocialAccountsController(ISocialAccountService socialAccountService)
         {
-            _skillService = skillService;
+            _socialAccountService = socialAccountService;
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(SkillCreateRequestDto dto)
+        public async Task<IActionResult> Create(SocialAccountsCreateRequestDto dto)
         {
             if (dto == null)
             {
                 return BadRequest("Invalid data");
             }
 
-            var result = await _skillService.AddAsync(dto);
+            var result = await _socialAccountService.AddAsync(dto);
             if (!result.Success)
             {
                 return BadRequest(result.Message);
@@ -34,14 +33,13 @@ namespace ResumeProject.WebApi.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update(SkillUpdateRequestDto dto)
+        public async Task<IActionResult> Update(SocialAccountsUpdateRequestDto dto)
         {
             if (dto == null)
             {
                 return BadRequest("Invalid data");
             }
-
-            var result = await _skillService.UpdateAsync(dto);
+            var result = await _socialAccountService.UpdateAsync(dto);
             if (!result.Success)
             {
                 return BadRequest(result.Message);
@@ -52,7 +50,7 @@ namespace ResumeProject.WebApi.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
-            var result = await _skillService.RemoveAsync(id);
+            var result = await _socialAccountService.RemoveAsync(id);
             if (!result.Success)
             {
                 return BadRequest(result.Message);
@@ -63,7 +61,7 @@ namespace ResumeProject.WebApi.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var result = await _skillService.GetAllAsync();
+            var result = await _socialAccountService.GetAllAsync();
             if (!result.Success)
             {
                 return BadRequest(result.Message);
@@ -74,7 +72,7 @@ namespace ResumeProject.WebApi.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(Guid id)
         {
-            var result = await _skillService.GetByIdAsync(id);
+            var result = await _socialAccountService.GetByIdAsync(id);
             if (!result.Success)
             {
                 return NotFound(result.Message);
@@ -82,21 +80,21 @@ namespace ResumeProject.WebApi.Controllers
             return Ok(result.Data);
         }
 
-        [HttpGet("[action]")]
-        public async Task<IActionResult> GetProgramLanguageAndTools()
+        [HttpGet("[action]/{platform}")]
+        public async Task<IActionResult> GetBySocialPlatform(string platform)
         {
-            var result = await _skillService.GetSkillsProgramLanguagesAsync();
+            var result = await _socialAccountService.GetSocialAccountByNameAsync(platform);
             if (!result.Success)
             {
-                return BadRequest(result.Message);
+                return NotFound(result.Message);
             }
             return Ok(result.Data);
         }
 
-        [HttpGet("[action]")]
-        public async Task<IActionResult> GetWorkflows()
+        [HttpGet("[action]/{username}")]
+        public async Task<IActionResult> GetAllByUsername(string username)
         {
-            var result = await _skillService.GetWorkflowsAsync();
+            var result = await _socialAccountService.GetSocialAccountByNameAsync(username);
             if (!result.Success)
             {
                 return BadRequest(result.Message);

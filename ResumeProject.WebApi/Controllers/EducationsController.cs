@@ -76,10 +76,21 @@ namespace ResumeProject.WebApi.Controllers
             var result = await _educationService.GetByIdAsync(id);
             if (!result.Success)
             {
-                return BadRequest(result.Message);
+                return NotFound(result.Message);
             }
             return Ok(result.Data);
         }
+        [HttpGet("[action]/{grade}")]
+        public async Task<IActionResult> GetEducationByGrade(string grade)
+        {
+            var result = await _educationService.GetEducationAsync(grade);
+            if (!result.Success)
+            {
+                return NotFound(result.Message);
+            }
+            return Ok(result.Data);
+        }
+
 
         [HttpGet("[action]")]
         public async Task<IActionResult> IsStudent()
