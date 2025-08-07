@@ -70,7 +70,7 @@ namespace ResumeProject.WebApi.Controllers
                 return BadRequest(result.Message);
             }
 
-            return Ok(result.Message);
+            return Ok(result.Data);
         }
 
         [HttpGet("{id}")]
