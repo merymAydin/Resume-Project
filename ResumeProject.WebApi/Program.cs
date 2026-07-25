@@ -22,7 +22,7 @@ builder.Services.AddCors(option =>
 builder.Services.AddControllers();
 builder.Services.AddDbContext<ResumeProjectDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString("MeryemHome"), options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("MeryemHome"), options =>
     {
         options.MigrationsAssembly(Assembly.GetAssembly(typeof(ResumeProjectDbContext))!.GetName().Name); 
     });
